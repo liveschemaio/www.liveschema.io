@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="ru-RU" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style id='sydney-style-inline-css' type='text/css'>
+body, a { font-family:'Open Sans', sans-serif;!important;}
+h1 { font-size:52px; }
+h2 { font-size:18px; }
+body { font-size:14px; }
+img {     margin-top: 10px; }
+</style>
+
+</head>
+
+<body>
+
+<div style="width: 100%;">
+	<div style="display: table; width: 80%; margin: 0 auto;">
+		<div style="text-align: right;">
+			<a href="index.html">Home</a> 
+			<a href="gallery.html">Gallery</a>
+			<a href="documentation.html" style="text-decoration: none;">Documentation</a> 
+		</div>
+		<h1>LiveScheme Doc</h1>
+
+
+		<hr style="align: left; width: 100%;" />
+		<p><strong>The LiveSchema could be installed on-site in customer private network. Here's a short notice of LiveSchema documentation avaliable by request. For software as a service use please contact us with email you will find in the bottom of the page. </strong></p>
+		<div>
+		<p>
+			<h2>Roles and access permisions</h2>
+			<p>There are 2 main roles of LiveSchema user interface. 
+			<blockquote>
+				Designer <br/>
+				Watcher <br/>
+			</blockquote>
+			Designer - a user who is able to manage all the objects, links and properties. <br/></p>
+			<p>Watcher - a user who is able to watch and able to change anything.<br/></p>
+			<p>Each of the Designers and Watchers can act in domain granted. So some of Designers can create/change/delete objects and links in A-domain, some of them can manage B-domain and some of them can manage both A and B domains. The same idea is for Watchers. </p>
+			<p>An Admin user can grand pemisions for users for the domains and grand permisions.
+			<p>Another level of access is system console and superuser. The superuser permisions required for installations and global reconfiguration issues.  
+
+
+			<h2>On-stie Deployment Requirements</h2>
+			<p>The system can be installed on both hardware servers and virtual machines.</p>
+			<p>The recommended requirements for a server of the system are:</p>
+			<blockquote>
+				64-bit OS <br/>
+				CPU — 2.4 GHz / quad core <br/>
+				RAM — 4 GB <br/>
+				HDD — 72 GB <br/>
+			</blockquote>
+
+			<p>64-bit OS for the server of the system is required. The following operating systems were successfully tested:</p>
+			<blockquote>
+				Red Hat Enterprise Linux 5.5+ / 6 / 7;<br/>
+				SUSE Linux Enterprise 11 / 12;<br/>
+				Ubuntu Linux 10.04 / 12.04 / 14.04 / 14.10.<br/>
+			</blockquote>
+			
+			<p>The server can be deployed with as a set of Docker Containers, Virtual or Hardware Machines meeting customer infrastructure design.
+
+			<h2>Interface settings</h2>
+			<p>To change system title in web interface:<br/>
+			create a copy of default settings file (if not created earlier):<br/>
+			<code>cp /usr/local/liveschema/client/js/default-client-config.js /usr/local/liveschema/client/js/client-config.js</code><br/>
+			enter new title to the custom settings file (<code>/usr/local/liveschema/client/js/client-config.js</code>) as follows: <code>title: ‘&lt;your-new-name&gt;’</code></p>	
+			
+			<p>To change LiveSchema color-map for all the system you need to change <code>/usr/local/liveschema/client/livescema.local/css/livescema.local.css</code> file. We can provide you with a set of color schemas or prepare an individual for you. The file change is superuser privilege.</p>
+			
+			<p>Note that you can style each of the object/elemnt individualy. There's a background image upload user interface control in each of the object properties. And you can style each of the object with custom pease of CSS through user interface control in each of the object properties. All of the user interface properties changes is available for Designer roles users only.</p>
+
+			<p><code>/usr/local/liveschema/client/livescema.local/css/livescema.local.css</code> is customisation example is follows:</p>
+				<pre><code>
+	.state-{ID} {
+		-moz-box-shadow: 2px 5px 10px {COLOR};   /* Object shadow color */
+		-webkit-box-shadow: 2px 5px 10px {COLOR};   /* Object shadow color */
+		box-shadow: 2px 5px 10px {COLOR};   /* Object shadow color */
+		border-left: 5px solid {COLOR}; /* Object main color */
+	}
+
+	.state-bg-{ID} {
+		background-color: {COLOR}; /* Object background color */
+	}
+
+	.state-bg-light-{ID} {
+		background-color: {COLOR}; /* Object background hue */
+	}
+
+	.view-screen-element ul li.child-object.state-{ID} {  /* Children object color */
+		border-left: 5px solid {COLOR};
+	}
+
+	.badge.state-{ID} { /* Children badge color */
+		background-color: {COLOR};
+	}
+
+	.link-state-{ID} circle { /* Link connector color */
+		fill: {COLOR};
+	}
+
+	.link-state-{ID} path { /* Link color */
+		stroke: {COLOR};
+	}
+				</code></pre><p>where:</p>
+				<pre><code>
+	{ID} - state ID;
+	{COLOR} - colors of object and link elements.
+				</code></pre>
+
+			<h2>Methods of control</h2>
+			<p>There are a number of build in methods to control state of each object or link.</p>
+			<blockquote>
+				Process by name <br/>
+				Database query <br/>
+				SNMP Get <br/>
+				SNMP Trap <br/>
+				Program / script execution <br/>
+				Ping <br/>
+				Local port <br/>
+				Remote port <br/>
+				HTTP-request <br/>
+				Configuration file / directory <br/>
+				JMX-sensor <br/>
+				FTP-sensor <br/>
+				MQTT-sensor <br/>
+				Binary protocol <br/>
+			</blockquote>
+			<p>The methods allow you to control an almost any service, application or network infrastrucure. For each of particular object or link Designer is able to set of "what is good and what is bad" condition in web user interface. </p>
+
+			<h2>Application Programming Interface</h2>
+			<p>LiveSchema API allows to create/change/delete objects and links, change it's poperties and assotiated documents, change state to make scheme color change.</p>
+
+			<p>The system provides RESTful API to access to its functionality. API includes authentication, actions on Objects, Links and Classes and other functions.</p>
+
+			<p>The documents describing all of the REST methods, their parameters and format of responses are available for customers.</p>
+
+			<p>API uses HTTP 2.0, both unsecure HTTP and secure HTTPS (over SLL).
+			</p>
+		</div>
+		<hr style="align: left; width: 100%;" />
+		<p style="text-align: right;">27 Feb 2017</p>
+		<p>Contact us on <a href="mailto:welcome@liveschema.io">welcome@liveschema.io</a></p>
+		<div style="text-align: right;">
+			<a href="index.html">Home</a> 
+			<a href="gallery.html">Gallery</a>
+			<a href="documentation.html" style="text-decoration: none;">Documentation</a>	
+		</div>		
+	</div>
+</div>
+			
+</body>
+</html>
