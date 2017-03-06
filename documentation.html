@@ -25,7 +25,7 @@
 
 
 		<hr style="align: left; width: 100%;" />
-		<p><strong>The LiveSchema could be installed on-site in customer private network. Here's a short notice of LiveSchema documentation avaliable by request. For software as a service use please contact us with email you will find in the bottom of the page. </strong></p>
+		<p><strong>The LiveSchema can be installed on-site in customer's private network. Here is a short notice of LiveSchema documentation avaliable by request. For the "software as a service" option please contact us at <a href="mailto:welcome@liveschema.io">welcome@liveschema.io</a>.</strong></p>
 		<div>
 		<p>
 			<h2>Roles and access permisions</h2>
@@ -35,11 +35,11 @@
 					Designer <br/>
 					Watcher <br/>
 				</blockquote>
-				Designer - a user who is able to manage all the objects, links and properties. <br/></p>
-				<p>Watcher - a user who is able to watch and able to change anything.<br/></p>
+				Designer - the user who is able to manage all the objects, links and properties. <br/></p>
+				<p>Watcher - the user who is able to view, but not to change.<br/></p>
 				<p>Each of the Designers and Watchers can act in domain granted. So some of Designers can create/change/delete objects and links in A-domain, some of them can manage B-domain and some of them can manage both A and B domains. The same idea is for Watchers. </p>
-				<p>An Admin user can grand pemisions for users for the domains and grand permisions.
-				<p>Another level of access is system console and superuser. The superuser permisions required for installations and global reconfiguration issues.  
+				<p>Admin - the user who can grant pemisions for Designers and Watchers.
+				<p>Another levels of access are the system console and the superuser. The superuser permisions are required for installation and global reconfiguration tasks.  
 			</blockquote>
 
 
@@ -51,7 +51,7 @@
 			<h2>On-site Deployment Requirements</h2>
 			<blockquote>
 				<p>The system can be installed on both hardware servers and virtual machines.</p>
-				<p>The recommended requirements for a server of the system are:</p>
+				<p>The recommended requirements for the server of the system are:</p>
 				<blockquote>
 					64-bit OS <br/>
 					CPU — 2.4 GHz / quad core <br/>
@@ -72,9 +72,10 @@
 			<h2>Interface settings</h2>
 			<blockquote>
 				<p>To change system title in web interface:<br/>
-				create a copy of default settings file (if not created earlier):<br/>
+				 - create a copy of default settings file (if not created earlier):<br/>
 				<code>cp /usr/local/liveschema/client/js/default-client-config.js /usr/local/liveschema/client/js/client-config.js</code><br/>
-				enter new title to the custom settings file (<code>/usr/local/liveschema/client/js/client-config.js</code>) as follows: <code>title: ‘&lt;your-new-name&gt;’</code></p>	
+				- enter new title to the custom settings file (<code>/usr/local/liveschema/client/js/client-config.js</code>) as follows:<br/>
+				<code>title: ‘&lt;your-new-name&gt;’</code></p>
 				
 				<p>To change LiveSchema color-map for all the system you need to change <code>/usr/local/liveschema/client/livescema.local/css/livescema.local.css</code> file. We can provide you with a set of color schemas or prepare an individual for you. The file change is superuser privilege.</p>
 				
@@ -141,7 +142,7 @@
 				<p>The methods allow you to control an almost any service, application or network infrastrucure. For each of particular object or link Designer is able to set of "what is good and what is bad" condition in web user interface. </p>
 
 				<h2>Application Programming Interface</h2>
-				<p>LiveSchema API allows to create/change/delete objects and links, change it's poperties and assotiated documents, change state to make scheme color change.</p>
+				<p>LiveSchema RESTful API allows to create/change/delete objects and links, change its poperties and assotiated documents, change states to make schema color change.</p>
 
 				<p>The system provides RESTful API to access to its functionality. API includes authentication, actions on Objects, Links and Classes and other functions.</p>
 
@@ -153,17 +154,17 @@
 
 				<h2>Associated documentation and properties</h2>
 				<blockquote>
-				<p>There's a functionality allowing Designers to add documentation and properties descriptions to an element context. That's meant that each and any object or link could have assotiated wiki-link or pdf-uploaded and the document will be accessible for Watchers. Designer can set an option with a text to a link or an object. The text will be shown in the object/link properties to the Watcher. Ther're an option to map the text right to the scheme.</p>
+				<p>There's functionality allowing Designers to add documentation and properties descriptions to the element context. This means that each and any object or link can have assotiated wiki-link or pdf-uploaded and the document will be available for Watchers. Designer can set an option with a text to a link or an object. The text will be shown in the object/link properties to the Watcher. There is an option to map the text right to the schema.</p>
 
-				<p>Those documents and links assotiated could be managed through API.</p>
+				<p>Those documents and links assotiated can be managed through API.</p>
 
-				<p>As an example, you can map addresses of your elements on the LiveScheme. Those addresses will be shown right under the elements.</p>
+				<p>As an example, you can map addresses of your elements on the LiveSchema. Those addresses will be shown right under the elements.</p>
 			</blockquote>
 
 
 			<h2>Audit and change log</h2>
 			<blockquote>
-				<p>All the changes are tracked by the LiveSchema system and could be viewed and anilised. Any modification is stored in assosiation with the Designer. And state change is stored in an object / a link state change history. Audit log and state change reports to be generated in future releases.</p>
+				<p>All the changes are tracked by the LiveSchema system and can be viewed and anilised. Any modification is stored in assosiation with the Designer. And state change is stored in object's and link's state change history. Audit log and state change reports to be generated in future releases.</p>
 			</blockquote>
 		</div>
 		<hr style="align: left; width: 100%;" />
