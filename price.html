@@ -1,16 +1,36 @@
-<!DOCTYPE html>
-<html lang="ru-RU" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+<!doctype html>
+<html lang="en" class="no-js">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-    @import "main.css" screen;   
-</style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="pricing_table/css/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="pricing_table/css/style.css"> <!-- Resource style -->
+	<script src="pricing_table/js/modernizr.js"></script> <!-- Modernizr -->
+  	
+	<title>Pricing</title>
+	<style>
+	    @import "main.css" screen;   
+
+	    .cd-pricing-switcher .fieldset {
+    
+    		background-color: rgba(97, 95, 95, 0.98);
+		}
+		.cd-pricing-header h2 {
+			background-color:transparent !important;
+		}
+		.cd-select {
+		    text-decoration: none;
+		}
+
+style.css:541
+.cd-s
+	</style>
 
 </head>
-
 <body>
-
 <div style="width: 100%;">
 	<div style="display: table; width: 80%; margin: 0 auto;">
 		<div style="text-align: right;">
@@ -22,30 +42,190 @@
 		</div>
 		<h1>LiveSchema Pricing</h1>
 		<hr style="align: left; width: 100%;" />
-		
-		<blockquote>
-			<table style="width: 100%;">
-				<tr><th>Features</th><th>Starter</th><th>Enterprise</th><th>Service Provider</th></tr>
-				<tr><td>Designers</td><td>1</td><td>5</td><td>50</td></tr>
-				<tr><td>Watchers</td><td>1</td><td>10</td><td>1 000</td></tr>
-				<tr><td>Objects and links</td><td>50</td><td>500</td><td>25 000</td></tr>
-				<tr><td></td><td></td><td></td><td></td></tr>
-				<tr><td>Support SLA</td><td>5x8</td><td>24x7</td><td>Dedicated</td></tr>
-				<tr><td>Customization and assistance service (hours per month)</td><td>2</td><td>20</td><td>40</td></tr>				
-				<tr><td>Cloud Subscription (monthly on Amazon cloud)</td><td td class="price">$199</td><td td class="price">$399</td><td td class="price">$999</td></tr>
-				<tr><td>On-site License (yearly per server)</td><td td class="price">$1999</td><td td class="price">$3999</td><td td class="price">$9999</td></tr>
-			</table>
-		</blockquote>
 
-		<p><strong>Free</strong> on-site delivery with remote access in one business day after the contract signed.</p> 
+		<div class="cd-pricing-container cd-full-width cd-secondary-theme">
+			<div class="cd-pricing-switcher">
+				<p class="fieldset">
+					<input type="radio" name="duration" value="monthly" id="monthly" checked>
+					<label for="monthly">Cloud</label>
+					<input type="radio" name="duration" value="yearly" id="yearly">
+					<label for="yearly">On-Site</label>
+					<span class="cd-switch"></span>
+				</p>
+			</div> <!-- .cd-pricing-switcher -->
 
-		<p>Money back guarantee in case of delivery inconsistency/failure.</p>
+		<ul class="cd-pricing-list cd-bounce-invert">
+			<li>
+				<ul class="cd-pricing-wrapper">
+					<li data-type="monthly" class="is-visible">
+						<header class="cd-pricing-header">
+							<h2>Starter</h2>
 
-		<hr style="align: left; width: 100%;" />
+							<div class="cd-price">
+								<span class="cd-currency">$</span>
+								<span class="cd-value">199</span>
+								<span class="cd-duration">mo</span>
+							</div>
+						</header> <!-- .cd-pricing-header -->
 
-		
-		
-		<p style="text-align: right;">03 Mar 2017</p>
+						<div class="cd-pricing-body">
+							<ul class="cd-pricing-features">
+								<li><em>1</em> Designer</li>
+								<li><em>1</em> Watcher</li>
+								<li><em>50</em> Objects and links</li>
+								<li><em>5/8</em> Support</li>
+								<li><em>2</em> Hours of customization and assistance service</li>
+							</ul>
+						</div> <!-- .cd-pricing-body -->
+
+						<footer class="cd-pricing-footer">
+							<a class="cd-select" href="mailto:welcome@liveschema.io?subject=Request LiveSchema Starter Cloud">Select</a>
+						</footer> <!-- .cd-pricing-footer -->
+					</li>
+
+					<li data-type="yearly" class="is-hidden">
+						<header class="cd-pricing-header">
+							<h2>Starter</h2>
+
+							<div class="cd-price">
+								<span class="cd-currency">$</span>
+								<span class="cd-value">1999</span>
+								<span class="cd-duration">yr</span>
+							</div>
+						</header> <!-- .cd-pricing-header -->
+
+						<div class="cd-pricing-body">
+							<ul class="cd-pricing-features">
+								<li><em>1</em> Designer</li>
+								<li><em>1</em> Watcher</li>
+								<li><em>50</em> Objects and links</li>
+								<li><em>5/8</em> Support</li>
+								<li><em>2</em> Hours of customization and assistance service</li>
+							</ul>
+						</div> <!-- .cd-pricing-body -->
+
+						<footer class="cd-pricing-footer">
+							<a class="cd-select" href="mailto:welcome@liveschema.io?subject=Request LiveSchema Starter OnSite">Select</a>
+						</footer> <!-- .cd-pricing-footer -->
+					</li>
+				</ul> <!-- .cd-pricing-wrapper -->
+			</li>
+
+			<li class="cd-popular">
+				<ul class="cd-pricing-wrapper">
+					<li data-type="monthly" class="is-visible">
+						<header class="cd-pricing-header">
+							<h2>Enterprise</h2>
+
+							<div class="cd-price">
+								<span class="cd-currency">$</span>
+								<span class="cd-value">399</span>
+								<span class="cd-duration">mo</span>
+							</div>
+						</header> <!-- .cd-pricing-header -->
+
+						<div class="cd-pricing-body">
+							<ul class="cd-pricing-features">
+								<li><em>5</em> Designers</li>
+								<li><em>10</em> Watchers</li>
+								<li><em>500</em> Objects and links</li>
+								<li><em>24/7</em> Support</li>
+								<li><em>20</em> Hours of customization and assistance service</li>
+							</ul>
+						</div> <!-- .cd-pricing-body -->
+
+						<footer class="cd-pricing-footer">
+							<a class="cd-select" href="mailto:welcome@liveschema.io?subject=Request LiveSchema Enterprise Cloud">Select</a>
+						</footer> <!-- .cd-pricing-footer -->
+					</li>
+
+					<li data-type="yearly" class="is-hidden">
+						<header class="cd-pricing-header">
+							<h2>Enterprise</h2>
+
+							<div class="cd-price">
+								<span class="cd-currency">$</span>
+								<span class="cd-value">3999</span>
+								<span class="cd-duration">yr</span>
+							</div>
+						</header> <!-- .cd-pricing-header -->
+
+						<div class="cd-pricing-body">
+							<ul class="cd-pricing-features">
+								<li><em>5</em> Designers</li>
+								<li><em>10</em> Watchers</li>
+								<li><em>500</em> Objects and links</li>
+								<li><em>24/7</em> Support</li>
+								<li><em>20</em> Hours of customization and assistance service</li>
+							</ul>
+						</div> <!-- .cd-pricing-body -->
+
+						<footer class="cd-pricing-footer">
+							<a class="cd-select" href="mailto:welcome@liveschema.io?subject=Request LiveSchema Enterprise OnSite">Select</a>
+						</footer> <!-- .cd-pricing-footer -->
+					</li>
+				</ul>
+			</li> <!-- .cd-pricing-wrapper -->
+
+			<li>
+				<ul class="cd-pricing-wrapper">
+					<li data-type="monthly" class="is-visible">
+						<header class="cd-pricing-header">
+							<h2>Service Provider</h2>
+
+							<div class="cd-price">
+								<span class="cd-currency">$</span>
+								<span class="cd-value">999</span>
+								<span class="cd-duration">mo</span>
+							</div>
+						</header> <!-- .cd-pricing-header -->
+
+						<div class="cd-pricing-body">
+							<ul class="cd-pricing-features">
+								<li><em>50</em> Designers</li>
+								<li><em>1 000</em> Watchers</li>
+								<li><em>25 000</em> Objects and links</li>
+								<li><em>Dedicated</em> Support</li>
+								<li><em>40</em> Hours of customization and assistance service</li>
+							</ul>
+						</div> <!-- .cd-pricing-body -->
+
+						<footer class="cd-pricing-footer">
+							<a class="cd-select" href="mailto:welcome@liveschema.io?subject=Request LiveSchema Service Provider Cloud">Select</a>
+						</footer> <!-- .cd-pricing-footer -->
+					</li>
+
+					<li data-type="yearly" class="is-hidden">
+						<header class="cd-pricing-header">
+							<h2>Service Provider</h2>
+
+							<div class="cd-price">
+								<span class="cd-currency">$</span>
+								<span class="cd-value">9999</span>
+								<span class="cd-duration">yr</span>
+							</div>
+						</header> <!-- .cd-pricing-header -->
+
+						<div class="cd-pricing-body">
+							<ul class="cd-pricing-features">
+								<li><em>50</em> Designers</li>
+								<li><em>1 000</em> Watchers</li>
+								<li><em>25 000</em> Objects and links</li>
+								<li><em>Dedicated</em> Support</li>
+								<li><em>40</em> Hours of customization and assistance service</li>
+							</ul>
+						</div> <!-- .cd-pricing-body -->
+
+						<footer class="cd-pricing-footer">
+							<a class="cd-select" href="mailto:welcome@liveschema.io?subject=Request LiveSchema Service Provider OnSite">Select</a>
+						</footer> <!-- .cd-pricing-footer -->
+					</li>
+				</ul> <!-- .cd-pricing-wrapper -->
+			</li>
+		</ul> <!-- .cd-pricing-list -->
+	</div> <!-- .cd-pricing-container -->
+
+		<p style="text-align: right;">10 Mar 2017</p>
 		<p>Contact us at <a href="mailto:welcome@liveschema.io">welcome@liveschema.io</a></p>
 		<div style="text-align: right;">
 			<a href="index.html">Home</a>
@@ -55,7 +235,8 @@
 			<a href="price.html" class="current">Pricing</a>	
 		</div>		
 	</div>
-</div>
-			
+</div>	
+<script src="pricing_table/js/jquery-2.1.1.js"></script>
+<script src="pricing_table/js/main.js"></script> <!-- Resource jQuery -->
 </body>
 </html>

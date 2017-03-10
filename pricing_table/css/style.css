@@ -19,15 +19,15 @@ html * {
 }
 
 body {
-  font-size: 1.6rem;
-  font-family: "Open Sans", sans-serif;
-  color: #173d50;
-  background-color: #173d50;
+  /*font-size: 1.6rem;*/
+  /*font-family: "Open Sans", sans-serif;*/
+  /*color: #173d50;*/
+  /*background-color: #173d50;*/
 }
 
 a {
-  color: #e97d68;
-  text-decoration: none;
+  /*color: #e97d68;*/
+  /*text-decoration: none;*/
 }
 
 /* -------------------------------- 
@@ -41,9 +41,9 @@ Main Components
   position: relative;
 }
 .cd-header h1 {
-  text-align: center;
-  color: #FFFFFF;
-  font-size: 2.2rem;
+  /*text-align: center;*/
+  /*color: #FFFFFF;*/
+  /*font-size: 2.2rem;*/
 }
 @media only screen and (min-width: 768px) {
   .cd-header {
@@ -51,19 +51,20 @@ Main Components
     line-height: 280px;
   }
   .cd-header h1 {
-    font-size: 3.6rem;
-    font-weight: 300;
+    /*font-size: 3.6rem;*/
+    /*font-weight: 300;*/
   }
 }
 
 .cd-pricing-container {
   width: 90%;
   max-width: 1170px;
-  margin: 4em auto;
+  /*margin: 4em auto;*/
 }
 @media only screen and (min-width: 768px) {
   .cd-pricing-container {
-    margin: 6em auto;
+    /*margin: 6em auto;*/
+    margin-top: 20px;
   }
   .cd-pricing-container.cd-full-width {
     width: 100%;
@@ -125,7 +126,7 @@ Main Components
 }
 
 .cd-pricing-list {
-  margin: 2em 0 0;
+  /*margin: 2em 0 0;*/
 }
 .cd-pricing-list > li {
   position: relative;
@@ -133,7 +134,8 @@ Main Components
 }
 @media only screen and (min-width: 768px) {
   .cd-pricing-list {
-    margin: 3em 0 0;
+    /*margin: 3em 0 0;*/
+        margin-top: 20px;
   }
   .cd-pricing-list:after {
     content: "";
