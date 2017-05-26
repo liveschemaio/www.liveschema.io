@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="github.css">
+</head>
+<body>
+<h2 id="flows">FLOWS</h2>
+<hr>
+<h3 id="-a-name-f-a-node-api-flows"><a name="f"></a> /node/api/flows</h3>
+<h5 id="-a-name-f-get-a-get"><a name="f.get"></a> GET</h5>
+<p>Возвращает список всех Потоков в виде массива JSON-документов.</p>
+<p>Body ответа сервера:</p>
+<pre><code>[{
+"_id": &lt;ID Потока&gt;,
+"owner_id": &lt;ID родителя объектов Потока&gt;,
+"item_ids": [
+   &lt;ID исходящего объекта&gt;,
+   &lt;ID входящего объекта&gt;
+],
+"client_data": {
+  &lt;Параметры отображения Потока&gt;
+},
+"properties": [
+    &lt;Свойство 1&gt;,
+    &lt;Свойство 2&gt;,
+    ...
+]
+},
+...
+]
+</code></pre><h5 id="-a-name-f-post-a-post"><a name="f.post"></a> POST</h5>
+<p>Создает новый Поток.</p>
+<p>JSON-документ запроса:</p>
+<pre><code>{
+  "item_ids": [
+      &lt;ID исходящего объекта&gt;,
+      &lt;ID входящего объекта&gt;
+  ],
+  "owner_id": &lt;ID родителя объектов Потока&gt;
+}
+</code></pre><p>Body ответа сервера:</p>
+<pre><code>{
+  "item_ids": [
+      &lt;ID исходящего объекта&gt;,
+      &lt;ID входящего объекта&gt;
+  ],
+  "owner_id": &lt;ID родителя объектов Потока&gt;,
+  "_id": "56d6adb3c4e677b603ac769d"
+}
+</code></pre><h3 id="-a-name-f-id-a-node-api-flows-id"><a name="f.id"></a> /node/api/flows/:id</h3>
+<h5 id="-a-name-f-id-patch-a-patch"><a name="f.id.patch"></a> PATCH</h5>
+<h5 id="-a-name-f-id-del-a-delete"><a name="f.id.del"></a> DELETE</h5>
+<p>Удаляет существующий Поток.</p>
+<h3 id="-a-name-f-id-pr-a-node-api-flows-id-props"><a name="f.id.pr"></a> /node/api/flows/:id/props</h3>
+<h5 id="-a-name-f-id-pr-post-a-post"><a name="f.id.pr.post"></a> POST</h5>
+<p>Создает свойство для Потока.</p>
+<p>JSON-документ запроса:</p>
+<pre><code>{
+  "name": &lt;Название свойства&gt;,
+  "type_id": &lt;Тип свойства&gt;,
+  "value": &lt;Значение свойства&gt;
+}
+</code></pre><p>Body ответа сервера:</p>
+<p>{
+  "id": <id свойства="">
+}</id></p>
+<p>Доступны следующие типы свойств:</p>
+<ul>
+<li><code>1</code>: Информация</li>
+<li><code>6</code>: Ссылка</li>
+<li><code>7</code>: Документ</li>
+</ul>
+<h3 id="-a-name-f-id-pr-prid-a-node-api-flows-id-props-propid"><a name="f.id.pr.prId"></a> /node/api/flows/:id/props/:propId</h3>
+<h5 id="-a-name-f-id-pr-prid-put-a-put"><a name="f.id.pr.prId.put"></a> PUT</h5>
+<p>Модифицирует существующее свойство Потока.</p>
+<p>JSON-документ запроса:</p>
+<pre><code>{
+  "name": &lt;Название свойства&gt;,
+  "type_id": &lt;Тип свойства&gt;,
+  "value": &lt;Значение свойства&gt;
+}
+</code></pre><p>Body ответа сервера - измененное свойства:</p>
+<pre><code>{
+  "name": &lt;Название свойства&gt;,
+  "value": &lt;Значение свойства&gt;,
+  "id": &lt;ID свойства&gt;,
+  "type_id":  &lt;Тип свойства&gt;
+}
+</code></pre><h5 id="-a-name-f-id-pr-prid-del-a-delete"><a name="f.id.pr.prId.del"></a> DELETE</h5>
+<p>Удаляет существующее свойство Потока.</p>
+<h3 id="-a-name-f-id-ds-a-node-api-flows-id-docs"><a name="f.id.ds"></a> /node/api/flows/:id/docs</h3>
+<h5 id="-a-name-f-id-ds-post-a-post"><a name="f.id.ds.post"></a> POST</h5>
+<p>Загружает документ для Потока с указанным ID.</p>
+<h3 id="-a-name-f-id-did-a-node-api-flows-id-docs-docid"><a name="f.id.dId"></a> /node/api/flows/:id/docs/:docId</h3>
+<h5 id="-a-name-f-id-did-del-a-delete"><a name="f.id.dId.del"></a> DELETE</h5>
+<p>Удаляет существующее свойство-документ.</p>
+<h3 id="-a-name-f-id-d-did-f-p-a-node-api-flows-id-docs-docid-format-pages"><a name="f.id.d.dId.f.p"></a> /node/api/flows/:id/docs/:docId/:format/pages</h3>
+<h5 id="-a-name-f-id-d-did-f-p-get-a-get"><a name="f.id.d.dId.f.p.get"></a> GET</h5>
+<p>Возвращает количество страниц в свойстве-документе.</p>
+<p>Доступные форматы:</p>
+<ul>
+<li><code>pdf</code></li>
+<li><code>png</code></li>
+</ul>
+<p>Body ответа сервера:</p>
+<pre><code>{"count":&lt;количество страниц&gt;}
+</code></pre>
+
+</body></html>

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="github.css">
+</head>
+<body>
+<h2 id="objects">OBJECTS</h2>
+<h3 id="-a-name-o-a-node-api-objects"><a name="o"></a> node/api/objects</h3>
+<h5 id="-a-name-o-get-a-get"><a name="o.get"></a> GET</h5>
+<p>Возвращает список всех Объектов в системе, БЕЗ Свойств, в виде массива JSON-документов. Каждый JSON-документ содержит 
+поля соответствующего Объекта, такие как <code>id</code>, <code>name</code>, <code>class_id</code>:</p>
+<p>Body ответа сервера - массив Объектов:</p>
+<pre><code>[
+{
+    "id": &lt;ID Объекта&gt;,
+    "parent_id": &lt;ID родителя Объекта&gt;,
+    "class_id": &lt;ID Класса Объекта&gt;,
+    "name": &lt;Имя Объекта&gt;,
+    "client_data": {
+        &lt;Параметры отображения Объекта&gt;
+    },
+    "background": &lt;Название фонового изображения Объекта&gt;,
+    "geoposition": [
+        &lt;X координата геопозиции&gt;,
+        &lt;Y координата геопозиции&gt;
+    ],
+    "child_ref_ids": [
+        &lt;ID вложенной Ссылки 1&gt;,
+        &lt;ID вложенной Ссылки 2&gt;,
+        ...
+    ],
+    "child_ids": [
+        &lt;ID вложенного Объекта 1&gt;,
+        &lt;ID вложенного Объекта 2&gt;,
+        ...
+    ],
+    "child_link_ids": [
+        &lt;ID Связи вложенных Объектов 1&gt;,
+        &lt;ID Связи вложенных Объектов 2&gt;,
+        ...
+    ],
+    "properties": [
+        &lt;Свойство 1&gt;,
+        &lt;Свойство 2&gt;,
+        ...
+    ]
+    "state_id": &lt;ID состояния Объекта&gt;
+},
+...
+]
+</code></pre><h5 id="-a-name-o-post-a-post"><a name="o.post"></a> POST</h5>
+<p>Создает новый Объект.</p>
+<p>JSON-документ запроса:</p>
+<pre><code>{
+    "name": &lt;имя&gt;,
+    "class_id": &lt;ID класса&gt;
+}
+</code></pre><p>Значения по-умолчанию:</p>
+<pre><code>parent_id: 1
+state_id: 1
+</code></pre><p>Body ответа сервера:</p>
+<pre><code>{
+  "parent_id": &lt;ID родителя&gt;,
+  "name": &lt;имя&gt;,
+  "class_id": &lt;ID класса&gt;,
+  "geoposition": [],
+  "child_ref_ids": [],
+  "child_link_ids": [],
+  "child_ids": [],
+  "properties": [],
+  "state_id": &lt;ID состояния&gt;,
+  "id": &lt;ID Объекта&gt;
+}
+</code></pre><h3 id="-a-name-o-id-a-node-api-objects-id"><a name="o.id"></a> node/api/objects/:id</h3>
+<h5 id="-a-name-o-id-get-a-get"><a name="o.id.get"></a> GET</h5>
+<p>Возвращает Объект с указанным ID.</p>
+<p>Body ответа сервера:</p>
+<pre><code>{
+    "id": &lt;ID Объекта&gt;,
+    "name": &lt;имя&gt;,
+    "class_id": &lt;ID класса&gt;,
+    "state_id": &lt;ID состояния&gt;,
+    "parent_id": &lt;ID родителя&gt;,
+    "child_ids": [
+        &lt;ID вложенного Объекта 1&gt;,
+        &lt;ID вложенного Объекта 2&gt;,
+        ...
+    ],
+    "child_link_ids": [
+        &lt;ID Связи вложенных Объектов 1&gt;,
+        &lt;ID Связи вложенных Объектов 2&gt;,
+        ...
+    ],
+    "child_ref_ids": [
+        &lt;ID вложенной Ссылки 1&gt;,
+        &lt;ID вложенной Ссылки 2&gt;,
+        ...
+    ]
+}
+</code></pre><h5 id="-a-name-o-id-patch-a-patch"><a name="o.id.patch"></a> PATCH</h5>
+<p>Модифицирует Объект с указанным ID.</p>
+<h5 id="-a-name-o-id-del-a-delete"><a name="o.id.del"></a> DELETE</h5>
+<p>Удалить Объект с указанным ID. Удаление Объекта подразумевает удаление непосредственно Объекта,
+его связей и потоков, вложенных Объектов и связей и потоков вложенных Объектов, а также ссылающихся на него Объектов.</p>
+<h3 id="-a-name-o-id-ch-a-node-api-objects-id-children"><a name="o.id.ch"></a> /node/api/objects/:id/children</h3>
+<h5 id="-a-name-o-id-ch-get-a-get"><a name="o.id.ch.get"></a> GET</h5>
+<p>Возвращает список Объектов, непосредственно вложенных в Объект с указанным ID,
+включая Свойства этих Объектов, в виде массива JSON-документов.</p>
+<p>Body ответа сервера - массив Объектов:</p>
+<pre><code>[
+{
+    "id": &lt;ID Объекта&gt;,
+    "name": &lt;Имя Объекта&gt;,
+    "class_id": &lt;ID класса Объекта&gt;,
+    "state_id": &lt;ID состояния Объекта&gt;,
+    "parent_id": &lt;ID родителя Объекта&gt;,
+    "client_data": {
+        &lt;Объект с клиентскими данными&gt;
+    },
+    "background": &lt;Имя фоногого изображения&gt;,
+    "geoposition": [
+        &lt;Массив координат геопозиции&gt;
+    ],
+    "properties": [
+        &lt;Свойство 1&gt;,
+        &lt;Свойство 2&gt;,
+        ...
+    ],
+    "child_ids": [
+        &lt;ID вложенного Объекта 1&gt;,
+        &lt;ID вложенного Объекта 2&gt;,
+        ...
+    ],
+    "child_link_ids": [
+        &lt;ID Связи вложенных Объектов 1&gt;,
+        &lt;ID Связи вложенных Объектов 2&gt;,
+        ...
+    ],
+    "child_ref_ids": [
+        &lt;ID вложенной Ссылки 1&gt;,
+        &lt;ID вложенной Ссылки 2&gt;,
+        ...
+    ]
+},
+...
+]
+</code></pre><h3 id="-a-name-o-id-ch-l-a-node-api-objects-id-children-links"><a name="o.id.ch.l"></a> node/api/objects/:id/children/links</h3>
+<h5 id="-a-name-o-id-ch-l-get-a-get"><a name="o.id.ch.l.get"></a> GET</h5>
+<p>Возвращает все связи дочерних Объектов для Объекта с указанным ID.</p>
+<p>Body ответа свервера - массив связей:</p>
+<pre><code>[
+{
+    "id": &lt;ID связи&gt;,
+    "source": &lt;ID начального Объекта связи&gt;,
+    "target": &lt;ID конечного Объекта связи&gt;,
+    "client_data": {
+            &lt;Объект с клиентскими данными&gt;
+    },
+    "properties": [
+            &lt;Массив свойств&gt;
+    ],
+    "class_id": 35
+},
+...
+]
+</code></pre><h3 id="-a-name-o-id-cl-a-node-api-objects-id-clone"><a name="o.id.cl"></a> node/api/objects/:id/clone</h3>
+<h5 id="-a-name-o-id-cl-post-a-post"><a name="o.id.cl.post"></a> POST</h5>
+<p>Возвращает точную копию Объекта с новым ID.</p>
+<p>Body ответа сервера:</p>
+<pre><code>{
+    "id": &lt;ID Объекта&gt;,
+    "name": &lt;имя&gt;,
+    "class_id": &lt;ID класса&gt;,
+    "state_id": &lt;ID состояния&gt;,
+    "parent_id": &lt;ID родителя&gt;,
+    "client_data": {
+        &lt;Объект с клиентскими данными&gt;
+    },
+    "background": &lt;Имя фоногого изображения&gt;,
+    "geoposition": [
+        &lt;массив координат геопозиции&gt;
+    ],
+    "properties": [
+        &lt;Свойство 1&gt;,
+        &lt;Свойство 2&gt;,
+        ...
+    ],
+    "child_ids": [
+        &lt;ID вложенного Объекта 1&gt;,
+        &lt;ID вложенного Объекта 2&gt;,
+        ...
+    ],
+    "child_link_ids": [
+        &lt;ID Связи вложенных Объектов 1&gt;,
+        &lt;ID Связи вложенных Объектов 2&gt;,
+        ...
+    ],
+    "child_ref_ids": [
+        &lt;ID вложенной Ссылки 1&gt;,
+        &lt;ID вложенной Ссылки 2&gt;,
+        ...
+    ]
+}
+</code></pre><h3 id="-a-name-o-id-st-a-node-api-objects-id-stat"><a name="o.id.st"></a> /node/api/objects/:id/stat</h3>
+<h5 id="-a-name-o-id-st-get-a-get"><a name="o.id.st.get"></a> GET</h5>
+<p>Возвращает данные от Агента по Объекту с указанным ID в виде JSON-документа.</p>
+<p>В поле <code>payload</code> содержится JSON-документ с полезными данными от Агента. Список полей в этом JSON-документе варьируется
+в зависимости от настроек мониторинга.</p>
+<p>Body ответа сервера:</p>
+<pre><code>{
+  "entityId": &lt;ID Объекта&gt;,
+  "entityType": "obj",
+  "taskType": &lt;Тип проверки&gt;,
+  "period": &lt;Период проверки&gt;,
+  "timestamp": &lt;Таймстэмп создания проверки&gt;,
+  "agentId": &lt;ID агента&gt;,
+  "agentVersion": &lt;Версия агента&gt;,
+  "agentBuild": &lt;Версия билда агента&gt;,
+  "payload": {
+      &lt;Данные от Агента 1&gt;,
+      &lt;Данные от Агента 2&gt;,
+      ...
+  }
+}
+</code></pre><h5 id="-a-name-o-id-st-post-a-post"><a name="o.id.st.post"></a> POST</h5>
+<p>Принимает JSON-документ, переданный в теле запроса, в качестве данных от агента. Используется в случае, когда нужно
+осуществлять мониторинг средствами стороннего ПО.</p>
+<p>Данные от агента должны иметь следующий формат:</p>
+<pre><code>{
+  "entityId": "ID Объекта",
+  "entityType": "obj",
+  "period": "Период проверки",
+  "payload": {...}
+}
+</code></pre><p>Поле <code>payload</code> содержит измерения по Объекту в формате JSON-документа. Это может быть либо одиночный JSON-документ,
+либо массив JSON-докуметов. Допустимы также вложенные документы.</p>
+<h3 id="-a-name-o-id-st-metr-a-node-api-objects-id-stat-metrics"><a name="o.id.st.metr"></a> /node/api/objects/:id/stat/metrics</h3>
+<h5 id="-a-name-o-id-st-metr-get-a-get"><a name="o.id.st.metr.get"></a> GET</h5>
+<p>Возвращает список числовых метрик для отрисовки графиков по данным от Агента по Объекту с указанным ID в виде JSON-массива.
+Если статов в даный момент нет, возвращает все предыдущие метрики.</p>
+<p>Body ответа сервера:</p>
+<pre><code>[
+  {&lt;Метрика 1&gt;},
+  {&lt;Метрика 2&gt;},
+  ...
+]
+</code></pre><h3 id="-a-name-o-id-st-meta-a-node-api-objects-id-stat-meta"><a name="o.id.st.meta"></a> /node/api/objects/:id/stat/meta</h3>
+<h5 id="-a-name-o-id-st-meta-get-a-get"><a name="o.id.st.meta.get"></a> GET</h5>
+<p>Возвращает метаданные Объекта с указанным ID.</p>
+<p>Body ответа сервера:</p>
+<pre><code>{
+  "entityId": &lt;ID Объекта&gt;,
+  "entityType": "obj",
+  "taskType": &lt;Тип проверки&gt;,
+  "period": &lt;Период проверки&gt;,
+  "timestamp": &lt;Таймстэмп создания проверки&gt;,
+  "agentId": &lt;ID агента&gt;,
+  "agentVersion": &lt;Версия агента&gt;,
+  "agentBuild": &lt;Версия билда агента&gt;,
+  "payload": {
+      &lt;Метрика 1&gt;: {
+        &lt;Метаданные&gt;
+      },
+      &lt;Метрика 2&gt;: {
+        &lt;Метаданные&gt;
+      },
+      ...
+  }
+}
+</code></pre><h3 id="-a-name-o-id-st-kf-a-node-api-objects-id-stat-key-field"><a name="o.id.st.kf"></a> /node/api/objects/:id/stat/key-field</h3>
+<h5 id="-a-name-o-id-st-kf-get-a-get"><a name="o.id.st.kf.get"></a> GET</h5>
+<p>Возвращает массив ключевых полей, либо пустой Объект, если таких полей нет.</p>
+<h3 id="-a-name-o-id-h-a-node-api-objects-id-history"><a name="o.id.h"></a> /node/api/objects/:id/history</h3>
+<h5 id="-a-name-o-id-h-get-a-get"><a name="o.id.h.get"></a> GET</h5>
+<p>Возвращает исторические данные по Объекту с указанным ID в виде JSON-массива.</p>
+<pre><code>[
+  {
+    "metric": имя_метрики,
+    "dbp": данные по метрике (массив пар времянная_метка-значение)
+  },
+  ...
+]
+</code></pre><p><a href="https://saas.saymon.info/docs/rest/rest-examples.md#exmpl.hist">Пример запроса</a></p>
+<h3 id="-a-name-o-id-sh-a-node-api-objects-id-state-history"><a name="o.id.sh"></a> /node/api/objects/:id/state-history</h3>
+<h5 id="-a-name-o-id-sh-get-a-get"><a name="o.id.sh.get"></a> GET</h5>
+<p>Возвращает историю перехода состояний для Объекта с указанным ID.</p>
+<p>Body ответа сервера, массив записей истории состояний:</p>
+<pre><code>[
+  {
+    "stateId": &lt;ID_состояния&gt;,
+    "timestamp": &lt;времянная метка перехода&gt;,
+    "reason": {
+      "code": &lt;код причины перехода состояния&gt;
+      "branch": &lt;JSON документ со сработавшим условием&gt;
+    }
+  },
+  ...
+]
+</code></pre><p>Поле <code>reason</code> в ответе является опциональным.</p>
+<p><a href="https://saas.saymon.info/docs/rest/rest-examples.md#exmpl.stHist">Пример запроса</a></p>
+<h3 id="-a-name-o-id-pr-a-node-api-objects-id-props"><a name="o.id.pr"></a> /node/api/objects/:id/props</h3>
+<h5 id="-a-name-o-id-pr-post-a-post"><a name="o.id.pr.post"></a> POST</h5>
+<p>Создает свойство для Объекта.</p>
+<p>JSON-документ запроса:</p>
+<pre><code>{
+  "name": &lt;Название свойства&gt;,
+  "type_id": &lt;Тип свойства&gt;,
+  "value": &lt;Значение свойства&gt;
+}
+</code></pre><p>Body ответа сервера:</p>
+<p>{
+  "id": <id свойства="">
+}</id></p>
+<p>Доступны следующие типы свойств:</p>
+<ul>
+<li><code>1</code>: Информация</li>
+<li><code>6</code>: Ссылка</li>
+<li><code>7</code>: Документ</li>
+<li><code>8</code>: Сервис(Свойства проверки)</li>
+</ul>
+<h3 id="-a-name-o-id-pr-prid-a-node-api-objects-id-props-propid"><a name="o.id.pr.prId"></a> /node/api/objects/:id/props/:propId</h3>
+<h5 id="-a-name-o-id-pr-prid-put-a-put"><a name="o.id.pr.prId.put"></a> PUT</h5>
+<p>Модифицирует существующее свойство Объекта.</p>
+<p>JSON-документ запроса:</p>
+<pre><code>{
+  "name": &lt;Название свойства&gt;,
+  "type_id": &lt;Тип свойства&gt;,
+  "value": &lt;Значение свойства&gt;
+}
+</code></pre><p>Body ответа сервера - измененное свойства:</p>
+<pre><code>{
+  "name": &lt;Название свойства&gt;,
+  "value": &lt;Значение свойства&gt;,
+  "id": &lt;ID свойства&gt;,
+  "type_id":  &lt;Тип свойства&gt;
+}
+</code></pre><h5 id="-a-name-o-id-pr-prid-del-a-delete"><a name="o.id.pr.prId.del"></a> DELETE</h5>
+<p>Удаляет существующее свойство Объекта.</p>
+<h3 id="-a-name-o-id-ds-a-node-api-objects-id-docs"><a name="o.id.ds"></a> /node/api/objects/:id/docs</h3>
+<h5 id="-a-name-o-id-ds-post-a-post"><a name="o.id.ds.post"></a> POST</h5>
+<p>Загружает документ для Объекта с укаанным ID.</p>
+<h3 id="-a-name-o-id-pr-d-did-a-node-api-objects-id-docs-docid"><a name="o.id.pr.d.dId"></a> /node/api/objects/:id/docs/:docId</h3>
+<h5 id="-a-name-o-id-pr-d-did-get-a-get"><a name="o.id.pr.d.dId.get"></a> GET</h5>
+<p>Возвращает существующее свойство-документ Объекта.</p>
+<p>Body ответа сервера:</p>
+<pre><code>{
+  "name": &lt;Название свойства&gt;,
+  "value": &lt;Значение свойства&gt;,
+  "id": &lt;ID свойства&gt;,
+  "type_id":  &lt;Тип свойства&gt;
+}
+</code></pre><h5 id="-a-name-o-id-pr-d-did-del-a-delete"><a name="o.id.pr.d.dId.del"></a> DELETE</h5>
+<p>Удаляет существующее свойство-документ.</p>
+<h3 id="-a-name-o-id-d-did-f-p-a-node-api-objects-id-docs-docid-format-pages"><a name="o.id.d.dId.f.p"></a> /node/api/objects/:id/docs/:docId/:format/pages</h3>
+<h5 id="-a-name-o-id-d-did-f-p-get-a-get"><a name="o.id.d.dId.f.p.get"></a> GET</h5>
+<p>Возвращает количество страниц в свойстве-документе.</p>
+<p>Доступные форматы:</p>
+<ul>
+<li><code>pdf</code></li>
+<li><code>png</code></li>
+</ul>
+<p>Body ответа сервера:</p>
+<pre><code>{"count":&lt;количество страниц&gt;}
+</code></pre><h3 id="-a-name-o-id-sc-a-node-api-objects-id-state-conditions"><a name="o.id.sc"></a> /node/api/objects/:id/state-conditions</h3>
+<h5 id="-a-name-o-id-sc-get-a-get"><a name="o.id.sc.get"></a> GET</h5>
+<p>Возвращает список условий смены состояний Объекта с указанным ID в виде массива JSON-документов.</p>
+<p>Body ответа сервера - массив JSON-документов</p>
+<pre><code>[
+  {
+    "condition": {"Имя Метрики": { "Оператор": "Значение" }},
+    "state": "ID Статуса"
+  },
+  ...
+]
+</code></pre><p>Возможные операторы:</p>
+<pre><code>"_eq" - "равно"
+"_neq" - "не равно"
+"_lt" - "меньше"
+"_lte" - "меньше или равно"
+"_gt" - "больше"
+"_gte" - "больше или равно"
+"_m" - "совпадает с"
+</code></pre><p><a href="https://saas.saymon.info/docs/rest/rest-examples.md#exmpl.stCond">Пример запроса</a></p>
+<h5 id="-a-name-o-id-sc-put-a-put"><a name="o.id.sc.put"></a> PUT</h5>
+<p>Модифицирует существующее условие перехода состояний Объекта.</p>
+<p><a href="https://saas.saymon.info/docs/rest/rest-examples.md#exmpl.stCond">Подробнее в примере запроса</a></p>
+<h5 id="-a-name-o-id-sc-del-a-delete"><a name="o.id.sc.del"></a> DELETE</h5>
+<p>Удаляет существующее условие перехода состояний Объекта.</p>
+<h3 id="-a-name-o-id-sc-e-a-node-api-objects-id-state-conditions-exists"><a name="o.id.sc.e"></a> /node/api/objects/:id/state-conditions/exists</h3>
+<h5 id="-a-name-o-id-sc-e-get-a-get"><a name="o.id.sc.e.get"></a> GET</h5>
+<p>Возвращает "true", если Объект с указанным ID содержит условия перехода состояний, "false" иначе.</p>
+<h3 id="-a-name-o-id-strig-a-node-api-objects-id-state-triggers"><a name="o.id.strig"></a> /node/api/objects/:id/state-triggers</h3>
+<h5 id="-a-name-o-id-strig-get-a-get"><a name="o.id.strig.get"></a> GET</h5>
+<p>Возвращает список триггеров условий перехода состояний Объекта.</p>
+<p>Body ответа сервера:</p>
+<pre><code>[
+  {
+    "type": &lt;тип триггера&gt;,
+    "payload": {
+      &lt;опции триггера&gt;
+      ]
+    },
+    "states": [
+      &lt;массив состояний, при переходе в которые сработает триггер&gt;
+    ]
+  },
+  ...
+]
+</code></pre><p>Возможные типы триггеров и их опции:</p>
+<ul>
+<li><code>script:</code></li>
+</ul>
+<pre><code>"type": "script",
+"payload": {
+  "execPath": &lt;путь к скрипту на сервере&gt;,
+  "execArgs": [
+    &lt;Аргумент 1&gt;,
+    &lt;Аргумент 2&gt;,
+    ...
+  ]
+}
+</code></pre><ul>
+<li><code>e-mail:</code></li>
+</ul>
+<pre><code>"type": "e-mail",
+"payload": {
+  "to": &lt;основной адрес куда будет отправлено уведомление&gt;,
+  "cc": &lt;адрес для отправки копии&gt;
+},
+</code></pre><h5 id="-a-name-o-id-strig-put-a-put"><a name="o.id.strig.put"></a> PUT</h5>
+<p>Модифирует существующий триггер условий перехода состояний Объекта.</p>
+<p>JSON-документ запроса:</p>
+<pre><code>[
+  {
+    "type": &lt;тип триггера&gt;,
+    "payload": {
+      &lt;Опции триггера&gt;
+      ]
+    },
+    "states": [
+      &lt;Массив состояний, при переходе в которые сработает триггер&gt;
+    ]
+  },
+  ...
+]
+</code></pre><p>Body ответа сервера:</p>
+<pre><code>[
+  {
+    "type": &lt;тип триггера&gt;,
+    "payload": {
+      &lt;опции триггера&gt;
+      ]
+    },
+    "states": [
+      &lt;массив состояний, при переходе в которые сработает триггер&gt;
+    ]
+  },
+  ...
+]
+</code></pre><h3 id="-a-name-o-id-a-a-objects-id-audit-log"><a name="o.id.a"></a> /objects/:id/audit-log</h3>
+<h4 id="-a-name-o-id-a-get-a-get"><a name="o.id.a.get"></a> GET</h4>
+<p>Возвращает список всех изменений, произошедших с Объектом в виде массива JSON-документов.</p>
+<p>Body ответа сервера:</p>
+<pre><code>[
+  {
+    "id": &lt;ID изменения&gt;,
+    "entityType": 1,
+    "entityId": &lt;ID отслеживаемого Объекта&gt;,
+    "newBody": {
+      &lt;Body Объекта после изменений&gt;
+    },
+    "oldBody": {
+      &lt;Body Объекта до изменений&gt;
+    },
+    "userId": &lt;ID Пользователя, совершившего изменения&gt;,
+    "kind": 1,
+    "timestamp": &lt;Таймстэмп совершения измененения&gt;
+  },
+  ...
+]  
+</code></pre><h3 id="-a-name-o-id-conf-a-objects-id-config-log"><a name="o.id.conf"></a> /objects/:id/config-log</h3>
+<h4 id="-a-name-o-id-conf-get-a-get"><a name="o.id.conf.get"></a> GET</h4>
+<p>Возвращает массив JSON-документов, содержащий ID событий, связанных с изменениями конфигурационных файлов в заданной директории для Объекта с указанным ID.</p>
+<pre><code>[
+  {
+    "_id": &lt;ID события, связанного с изменением конфигурационного файла&gt;,
+    "timestamp": &lt;Таймстэмп совершения изменений&gt;
+  },
+  ...
+]
+</code></pre><h3 id="-a-name-o-id-conf-iid-a-objects-id-config-log-itemid"><a name="o.id.conf.iId"></a> /objects/:id/config-log/:itemId</h3>
+<h4 id="-a-name-o-id-conf-iid-get-a-get"><a name="o.id.conf.iId.get"></a> GET</h4>
+<p>Возвращает JSON-документ, содержащий сведения о конкретном событии, связанном с изменениями конфигурационного 
+файла в заданной директории для Объекта с указанным ID.</p>
+<p>Body ответа сервера:</p>
+<pre><code>{
+  "_id": &lt;ID события, связанного с изменением конфигурационного файла&gt;,
+  "timestamp": &lt;Таймстэмп совершения изменений&gt;,
+  "content": &lt;Содержание конфигурационного файла&gt;,
+  "contentEncoding": &lt;Кодировка&gt;
+}
+</code></pre><h3 id="-a-name-o-id-bg-a-node-api-objects-id-background"><a name="o.id.bg"></a> /node/api/objects/:id/background</h3>
+<h5 id="-a-name-o-id-bg-post-a-post"><a name="o.id.bg.post"></a> POST</h5>
+<p>Загружает картинку в качестве фонового изображения Объекта.</p>
+<h5 id="-a-name-o-id-bg-del-a-delete"><a name="o.id.bg.del"></a> DELETE</h5>
+<p>Удаляет фоновое изображение Объекта.</p>
+<h3 id="-a-name-o-id-s-a-node-api-objects-id-state"><a name="o.id.s"></a> /node/api/objects/:id/state</h3>
+<h5 id="-a-name-o-id-s-put-a-put"><a name="o.id.s.put"></a> PUT</h5>
+<p>Изменяет состояние Объекта.</p>
+<p>JSON-документ запроса:</p>
+<pre><code>{
+    "state_id": &lt;ID состояния, в которое необходимо перевести Объект&gt;
+}
+</code></pre>
+
+</body></html>

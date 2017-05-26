@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="github.css">
+</head>
+<body>
+<h2 id="links">LINKS</h2>
+<h3 id="-a-name-l-a-node-api-links"><a name="l"></a> /node/api/links</h3>
+<h5 id="-a-name-l-get-a-get"><a name="l.get"></a> GET</h5>
+<p>Возвращает список существующих Связей в виде массива JSON-документов.</p>
+<p>Body ответа сервера - массив Связей:</p>
+<pre><code>[
+{
+    "id":&lt;ID Связи&gt;,
+    "source":&lt;ID исходящего объекта&gt;,
+    "target":&lt;ID входящего объекта&gt;,
+    "state_id":&lt;ID состояния Связи&gt;,
+    "class_id":&lt;ID класса&gt;
+}
+,
+...
+]
+</code></pre><h5 id="-a-name-l-post-a-post"><a name="l.post"></a> POST</h5>
+<p>Создает новую Связь.</p>
+<p>JSON-документ запроса:</p>
+<pre><code>{
+    "source": &lt;ID исходящего объекта&gt;,
+    "target": &lt;ID входящего объекта&gt;
+}
+</code></pre><p>Body ответа сервера:</p>
+<pre><code>{
+  "source": &lt;ID исходящего объекта&gt;,
+  "target": &lt;ID входящего объекта&gt;,
+  "properties": [],
+  "state_id": &lt;ID статуса Связи&gt;,
+  "class_id": &lt;ID класса Связи&gt;,
+  "id": &lt;ID Связи&gt;
+}
+</code></pre><h3 id="-a-name-l-id-a-node-api-links-id"><a name="l.id"></a> /node/api/links/:id</h3>
+<h5 id="-a-name-l-id-get-a-get"><a name="l.id.get"></a> GET</h5>
+<p>Возвращает Связь с указанным ID.</p>
+<p>Body ответа сервера:</p>
+<pre><code>{
+  "source": &lt;ID исходящего объекта&gt;,
+  "target": &lt;ID входящего объекта&gt;,
+  "properties": [&lt;Свойство Связи 1&gt;, &lt;Свойство Связи 2&gt;, ...],
+  "state_id": &lt;ID статуса Связи&gt;,
+  "class_id": &lt;ID класса Связи&gt;,
+  "id": &lt;ID Связи&gt;
+}
+</code></pre><h5 id="-a-name-l-id-patch-a-patch"><a name="l.id.patch"></a> PATCH</h5>
+<p>Модифицирует Связь с указанным ID.</p>
+<h5 id="-a-name-l-id-del-a-delete"><a name="l.id.del"></a> DELETE</h5>
+<p>Удаляет Связь с указанным ID.</p>
+<h3 id="-a-name-l-id-st-a-node-api-links-id-stat"><a name="l.id.st"></a> /node/api/links/:id/stat</h3>
+<h5 id="-a-name-l-id-st-get-a-get"><a name="l.id.st.get"></a> GET</h5>
+<p>Возвращает данные от Агента для Связи с указанным ID в виде JSON-документа.</p>
+<p>В поле <code>payload</code> содержится JSON-документ с полезными данными от Агента. Список полей в этом JSON-документе варьируется
+в зависимости от настроек мониторинга.</p>
+<p>Body ответа сервера:</p>
+<pre><code>{
+  "entityId": &lt;ID Связи&gt;,
+  "entityType": "link",
+  "taskType": &lt;Тип проверки&gt;,
+  "period": &lt;Период проверки&gt;,
+  "timestamp": &lt;Таймстэмп создания проверки&gt;,
+  "agentId": &lt;ID агента&gt;,
+  "agentVersion": &lt;Версия агента&gt;,
+  "agentBuild": &lt;Версия билда агента&gt;,
+  "payload": {
+      &lt;Данные от Агента 1&gt;,
+      &lt;Данные от Агента 2&gt;,
+      ...
+  }
+}
+</code></pre><h5 id="-a-name-l-id-st-post-a-post"><a name="l.id.st.post"></a> POST</h5>
+<p>Принимает JSON-документ, переданный в теле запроса, в качестве данных от агента. Используется в случае, когда нужно
+осуществлять мониторинг средствами стороннего ПО.</p>
+<p>Данные от агента должны иметь следующий формат:</p>
+<pre><code>{
+  "entityId": &lt;ID Связи&gt;,
+  "entityType": "link",
+  "period": "Период проверки",
+  "payload": {...}
+}
+</code></pre><p>Поле <code>payload</code> содержит измерения по объекту в формате JSON-документа. Это может быть либо одиночный JSON-документ,
+либо массив JSON-докуметов. Допустимы также вложенные документы.</p>
+<h3 id="-a-name-l-id-st-metr-a-node-api-links-id-stat-metrics"><a name="l.id.st.metr"></a> /node/api/links/:id/stat/metrics</h3>
+<h5 id="-a-name-l-id-st-metr-get-a-get"><a name="l.id.st.metr.get"></a> GET</h5>
+<p>Возвращает список числовых метрик для отрисовки графиков по данным от Агента по Связи с указанным ID в виде JSON-массива.
+Если статов в даный момент нет, возвращает все предыдущие метрики.</p>
+<p>Body ответа сервера:</p>
+<pre><code>[
+  {&lt;Метрика 1&gt;},
+  {&lt;Метрика 2&gt;},
+  ...
+]
+</code></pre><h3 id="-a-name-l-id-st-meta-a-node-api-links-id-stat-meta"><a name="l.id.st.meta"></a> /node/api/links/:id/stat/meta</h3>
+<h5 id="-a-name-l-id-st-meta-get-a-get"><a name="l.id.st.meta.get"></a> GET</h5>
+<p>Возвращает метаданные Связи с указанным ID.</p>
+<p>Body ответа сервера:</p>
+<pre><code>{
+  "entityId": &lt;ID Связи&gt;,
+  "entityType": "link",
+  "taskType": &lt;Тип проверки&gt;,
+  "period": &lt;Период проверки&gt;,
+  "timestamp": &lt;Таймстэмп создания проверки&gt;,
+  "agentId": &lt;ID агента&gt;,
+  "agentVersion": &lt;Версия агента&gt;,
+  "agentBuild": &lt;Версия билда агента&gt;,
+  "payload": {
+      &lt;Метрика 1&gt;: {
+        &lt;Метаданные&gt;
+      },
+      &lt;Метрика 2&gt;: {
+        &lt;Метаданные&gt;
+      },
+      ...
+  }
+}
+</code></pre><h3 id="-a-name-l-id-h-a-links-id-history"><a name="l.id.h"></a> /links/:id/history</h3>
+<h5 id="-a-name-l-id-h-get-a-get"><a name="l.id.h.get"></a> GET</h5>
+<p>Возвращает исторические данные по Связи с указанным ID в виде JSON-массива.</p>
+<pre><code>[
+  {
+    "metric": имя_метрики,
+    "dbp": данные по метрике (массив пар времянная_метка-значение)
+  },
+  ...
+]
+</code></pre><p><a href="https://saas.saymon.info/docs/rest/rest-examples.md#exmpl.hist">Пример запроса</a></p>
+<h3 id="-a-name-l-id-sh-a-node-api-links-id-state-history"><a name="l.id.sh"></a> /node/api/links/:id/state-history</h3>
+<h5 id="-a-name-l-id-sh-get-a-get"><a name="l.id.sh.get"></a> GET</h5>
+<p>Возвращает историю перехода состояний для Связи с указанным ID.</p>
+<p>Body ответа сервера, массив записей истории состояний:</p>
+<pre><code>[
+  {
+    "stateId": &lt;ID_состояния&gt;,
+    "timestamp": &lt;времянная метка перехода&gt;,
+    "reason": {
+      "code": &lt;код причины перехода состояния&gt;
+      "branch": &lt;JSON документ со сработавшим условием&gt;
+    }
+  },
+  ...
+]
+</code></pre><p>Поле <code>reason</code> в ответе является опциональным.</p>
+<p><a href="https://saas.saymon.info/docs/rest/rest-examples.md#exmpl.stHist">Пример запроса</a></p>
+<h3 id="-a-name-l-id-pr-a-node-api-links-id-props"><a name="l.id.pr"></a> /node/api/links/:id/props</h3>
+<h5 id="-a-name-l-id-pr-post-a-post"><a name="l.id.pr.post"></a> POST</h5>
+<p>Создает свойство для Связи.</p>
+<p>JSON-документ запроса:</p>
+<pre><code>{
+  "name": &lt;Название свойства&gt;,
+  "type_id": &lt;Тип свойства&gt;,
+  "value": &lt;Значение свойства&gt;
+}
+</code></pre><p>Body ответа сервера:</p>
+<p>{
+  "id": <id свойства="">
+}</id></p>
+<p>Доступны следующие типы свойств:</p>
+<ul>
+<li><code>1</code>: Информация</li>
+<li><code>6</code>: Ссылка</li>
+<li><code>7</code>: Документ</li>
+<li><code>8</code>: Сервис(Свойства проверки)</li>
+</ul>
+<h3 id="-a-name-l-id-pr-prid-a-node-api-links-id-props-propid"><a name="l.id.pr.prId"></a> /node/api/links/:id/props/:propId</h3>
+<h5 id="-a-name-l-id-pr-prid-put-a-put"><a name="l.id.pr.prId.put"></a> PUT</h5>
+<p>Модифицирует существующее свойство Связи.</p>
+<p>JSON-документ запроса:</p>
+<pre><code>{
+  "name": &lt;Название свойства&gt;,
+  "type_id": &lt;Тип свойства&gt;,
+  "value": &lt;Значение свойства&gt;
+}
+</code></pre><p>Body ответа сервера - измененное свойства:</p>
+<pre><code>{
+  "name": &lt;Название свойства&gt;,
+  "value": &lt;Значение свойства&gt;,
+  "id": &lt;ID свойства&gt;,
+  "type_id":  &lt;Тип свойства&gt;
+}
+</code></pre><h5 id="-a-name-l-id-pr-prid-del-a-delete"><a name="l.id.pr.prId.del"></a> DELETE</h5>
+<p>Удаляет существующее свойство Объекта.</p>
+<h3 id="-a-name-l-id-ds-a-node-api-links-id-docs"><a name="l.id.ds"></a> /node/api/links/:id/docs</h3>
+<h5 id="-a-name-l-id-ds-post-a-post"><a name="l.id.ds.post"></a> POST</h5>
+<p>Загружает документ для Связи с укаанным ID.</p>
+<h3 id="-a-name-l-id-d-did-a-node-api-links-id-docs-docid"><a name="l.id.d.dId"></a> /node/api/links/:id/docs/:docId</h3>
+<h5 id="-a-name-l-id-d-did-get-a-get"><a name="l.id.d.dId.get"></a> GET</h5>
+<p>Возвращает существующее свойство-документ Связи.</p>
+<p>Body ответа сервера:</p>
+<pre><code>{
+  "name": &lt;Название свойства&gt;,
+  "value": &lt;Значение свойства&gt;,
+  "id": &lt;ID свойства&gt;,
+  "type_id":  &lt;Тип свойства&gt;
+}
+</code></pre><h5 id="-a-name-l-id-d-did-del-a-delete"><a name="l.id.d.dId.del"></a> DELETE</h5>
+<p>Удаляет существующее свойство-документ.</p>
+<h3 id="-a-name-l-id-d-did-f-p-a-node-api-links-id-docs-docid-format-pages"><a name="l.id.d.dId.f.p"></a> /node/api/links/:id/docs/:docId/:format/pages</h3>
+<h5 id="-a-name-l-id-d-did-f-p-get-a-get"><a name="l.id.d.dId.f.p.get"></a> GET</h5>
+<p>Возвращает количество страниц в свойстве-документе.</p>
+<p>Доступные форматы:</p>
+<ul>
+<li><code>pdf</code></li>
+<li><code>png</code></li>
+</ul>
+<p>Body ответа сервера:</p>
+<pre><code>{"count":&lt;количество страниц&gt;}
+</code></pre><h3 id="-a-name-l-id-sc-a-node-api-links-id-state-conditions"><a name="l.id.sc"></a> /node/api/links/:id/state-conditions</h3>
+<h5 id="-a-name-l-id-sc-get-a-get"><a name="l.id.sc.get"></a> GET</h5>
+<p>Возвращает список условий смены состояний Связи с указанным ID в виде массива JSON-документов.</p>
+<p>Body ответа сервера - массив JSON-документов</p>
+<pre><code>[
+  {
+    "condition": {"Имя Метрики": { "Оператор": "Значение" }},
+    "state": "ID Статуса"
+  },
+  ...
+]
+</code></pre><p>Возможные операторы:</p>
+<pre><code>"_eq" - "равно"
+"_neq" - "не равно"
+"_lt" - "меньше"
+"_lte" - "меньше или равно"
+"_gt" - "больше"
+"_gte" - "больше или равно"
+"_m" - "совпадает с"
+</code></pre><p><a href="https://saas.saymon.info/docs/rest/rest-examples.md#exmpl.stCond">Пример запроса</a></p>
+<h5 id="-a-name-l-id-sc-put-a-put"><a name="l.id.sc.put"></a> PUT</h5>
+<p>Модифицирует существующее условие перехода состояний Связи.</p>
+<p><a href="https://saas.saymon.info/docs/rest/rest-examples.md#exmpl.stCond">Подробнее в примере запроса</a></p>
+<h5 id="-a-name-l-id-sc-del-a-delete"><a name="l.id.sc.del"></a> DELETE</h5>
+<p>Удаляет существующее условие перехода состояний Связи.</p>
+<h3 id="-a-name-l-id-sc-e-a-node-api-links-id-state-conditions-exists"><a name="l.id.sc.e"></a> /node/api/links/:id/state-conditions/exists</h3>
+<h5 id="-a-name-l-id-sc-e-get-a-get"><a name="l.id.sc.e.get"></a> GET</h5>
+<p>Возвращает "true", если Связь с указанным ID содержит условия перехода состояний, "false" иначе.</p>
+<h3 id="-a-name-l-id-strig-a-node-api-links-id-state-triggers"><a name="l.id.strig"></a> /node/api/links/:id/state-triggers</h3>
+<h5 id="-a-name-l-id-strig-get-a-get"><a name="l.id.strig.get"></a> GET</h5>
+<p>Возвращает список триггеров условий перехода состояний Связи.</p>
+<p>Body ответа сервера:</p>
+<pre><code>[
+  {
+    "type": &lt;тип триггера&gt;,
+    "payload": {
+      &lt;опции триггера&gt;
+      ]
+    },
+    "states": [
+      &lt;массив состояний, при переходе в которые сработает триггер&gt;
+    ]
+  },
+  ...
+]
+</code></pre><p>Возможные типы триггеров и их опции:</p>
+<ul>
+<li><code>script:</code></li>
+</ul>
+<pre><code>"type": "script",
+"payload": {
+  "execPath": &lt;путь к скрипту на сервере&gt;,
+  "execArgs": [
+    &lt;Аргумент 1&gt;,
+    &lt;Аргумент 2&gt;,
+    ...
+  ]
+}
+</code></pre><ul>
+<li><code>e-mail:</code></li>
+</ul>
+<pre><code>"type": "e-mail",
+"payload": {
+  "to": &lt;основной адрес куда будет отправлено уведомление&gt;,
+  "cc": &lt;адрес для отправки копии&gt;
+},
+</code></pre><h5 id="-a-name-l-id-strig-put-a-put"><a name="l.id.strig.put"></a> PUT</h5>
+<p>Модифирует существующий триггер условий перехода состояний Связи.</p>
+<p>JSON-документ запроса:</p>
+<pre><code>[
+  {
+    "type": &lt;тип триггера&gt;,
+    "payload": {
+      &lt;опции триггера&gt;
+      ]
+    },
+    "states": [
+      &lt;массив состояний, при переходе в которые сработает триггер&gt;
+    ]
+  },
+  ...
+]
+</code></pre><p>Body ответа сервера:</p>
+<pre><code>[
+  {
+    "type": &lt;тип триггера&gt;,
+    "payload": {
+      &lt;Опции триггера&gt;
+      ]
+    },
+    "states": [
+      &lt;Массив состояний, при переходе в которые сработает триггер&gt;
+    ]
+  },
+  ...
+]
+</code></pre><h3 id="-a-name-l-id-a-a-links-id-audit-log"><a name="l.id.a"></a> /links/:id/audit-log</h3>
+<h4 id="-a-name-l-id-a-get-a-get"><a name="l.id.a.get"></a> GET</h4>
+<p>Возвращает список всех изменений, произошедших со Связью в виде массива JSON-документов.</p>
+<p>Body ответа сервера:</p>
+<pre><code>[
+  {
+    "id": &lt;ID изменения&gt;,
+    "entityType": 1,
+    "entityId": &lt;ID отслеживаемой Связи&gt;,
+    "newBody": {
+      &lt;Body Связи после изменений&gt;
+    },
+    "oldBody": {
+      &lt;Body Связи до изменений&gt;
+    },
+    "userId": &lt;ID Пользователя, совершившего изменения&gt;,
+    "kind": 1,
+    "timestamp": &lt;Таймстэмп совершения измененения&gt;
+  },
+  ...
+]
+</code></pre><h3 id="-a-name-l-id-s-a-node-api-links-id-state"><a name="l.id.s"></a> /node/api/links/:id/state</h3>
+<h5 id="-a-name-l-id-s-put-a-put"><a name="l.id.s.put"></a> PUT</h5>
+<p>Изменяет состояние Связи.</p>
+<p>JSON-документ запроса:</p>
+<pre><code>{
+    "state_id": &lt;ID состояния, в которое необходимо перевести Связь&gt;
+}
+</code></pre>
+
+</body></html>

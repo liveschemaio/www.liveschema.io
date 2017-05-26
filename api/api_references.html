@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="github.css">
+</head>
+<body>
+<h2 id="references">REFERENCES</h2>
+<h3 id="-a-name-r-a-node-api-refs"><a name="r"></a> /node/api/refs</h3>
+<h5 id="-a-name-r-get-a-get"><a name="r.get"></a> GET</h5>
+<p>Возвращает список всех существующих Ссылок в системе в виде массива JSON-документов.</p>
+<p>Body ответа сервера:</p>
+<pre><code>[
+  {
+    "id": &lt;ID Ссылки&gt;,
+    "target": &lt;ID Объекта, на который ссылается Ссылка&gt;,
+    "owner": &lt;ID родительского Объекта Ссылки&gt;,
+    "client_data": "{
+        &lt;Параметры отображения Ссылки&gt;
+    }"
+  },
+  ...
+]
+</code></pre><h5 id="-a-name-r-post-a-post"><a name="r.post"></a> POST</h5>
+<p>Создает новую Ссылку.</p>
+<p>Body ответа сервера:</p>
+<pre><code>{
+  "target": &lt;ID Объекта, на который ссылается Ссылка&gt;,
+  "owner": &lt;ID родительского Объекта Ссылки&gt;,
+}
+</code></pre><h3 id="-a-name-r-id-a-node-api-refs-id"><a name="r.id"></a> /node/api/refs/:id</h3>
+<h5 id="-a-name-r-id-patch-a-patch"><a name="r.id.patch"></a> PATCH</h5>
+<p>Модифицирует Ссылку с указанным ID.</p>
+<h5 id="-a-name-r-id-del-a-delete"><a name="r.id.del"></a> DELETE</h5>
+<p>Удаляет Ссылку с указанным ID.</p>
+
+
+</body></html>
